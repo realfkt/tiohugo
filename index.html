@@ -3,84 +3,328 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tio Hugo - Reciclaje a Domicilio</title>
+    <title>Tio Hugo - Reciclaje Certificado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        :root {
+            --primary-green: #2d5a27;
+            --dark-green: #1b3a1a;
+            --light-green: #d4e8d4;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
         }
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 2rem 0;
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(45, 90, 39, 0.8), rgba(45, 90, 39, 0.8)), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23d4e8d4' opacity='1' d='M0,270L31.1,246.7C62.2,223.3,124.4,186.7,186.7,165.3C248.9,144,311,117.3,373.3,112C435.6,106.7,497.8,120,558.9,125.3C620.1,130.7,681.5,117.3,742.7,106.7C803.9,96,865.1,75,925.6,69.3C985.8,63.3,1045.5,53.3,1104.4,53.3C1164.4,53.3,1223.7,64,1266.7,74.7C1308.9,85.3,1365.8,106.7,1416,122.7L1440,133.3L1440,320L1320,320L1280,352L1280,320L1200,320L1152,320L1120,320L1088,320L1056,320L1024,320L992,320L960,320L928,320L896,320L864,320L832,320L800,320L768,320L736,320L704,320L672,320L640,320L608,320L576,320L544,320L512,320L480,320L448,320L416,320L384,320L352,320L320,320L288,320L256,320L224,320L192,320L160,320L128,320L96,320L64,320L32,320L0,320Z'/%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 80px 20px;
             text-align: center;
         }
-        h1 {
-            margin: 0;
-            font-size: 2.5rem;
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
         }
-        p {
-            margin: 0.5rem 0 0;
+
+        .hero h1 span {
+            color: var(--light-green);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero .btn {
+            background-color: var(--light-green);
+            color var(--primary-green);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .hero .btn:hover {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+
+        /* --- SECTIONS STYLE --- */
+        section {
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- CERTIFICATION SECTION --- */
+        .certificate {
+            background-color: var(--light-green);
+        }
+
+        .certificate .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cert-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-top: -50px; /* Overlap hero */
+            position: relative;
+            z-index: 1;
+        }
+
+        .cert-card h3 {
+            color: var(--primary-green);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-green);
+        }
+
+        .cert-info {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .cert-code {
+            color: var(--primary-green);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-top: 10px;
+            display: block;
+        }
+
+        /* --- COMPETENCES SECTION --- */
+        .competences {
+            background-color: var(--white);
+        }
+
+        .comp-card {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-left: 4px solid var(--primary-green);
+        }
+
+        .comp-card h4 {
+            color: var(--primary-green);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .comp-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* --- TEAM/SECTION --- */
+        .team {
+            text-align: center;
+        }
+
+        .team .ficha {
+            background: var(--primary-green);
+            color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .team h3 {
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .ficha p {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: 0.9rem;
+        }
+
+        .ficha span {
+            color: var(--light-green);
+        }
+
+        /* --- CTA --- */
+        .cta {
+            background-color: var(--primary-green);
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            margin-bottom: 30px;
             font-size: 1.2rem;
         }
-        .container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            text-align: center;
-        }
-        .section {
-            margin-bottom: 2rem;
-        }
-        .btn {
+
+        .cta .btn {
+            background-color: var(--light-green);
+            color: var(--primary-green);
+            padding: 15px 50px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
             display: inline-block;
-            background-color: #e74c3c;
-            color: white;
-            padding: 0.8rem 1.6rem;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            margin-top: 1rem;
         }
-        .btn:hover {
-            background-color: #c0392b;
+
+        .cta .btn:hover {
+            background-color: var(--white);
+            color: var(--primary-green);
         }
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: #666;
-            font-size: 0.9rem;
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .section-title h2 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Tio Hugo</h1>
-    <p>Reciclaje a domicilio</p>
-</header>
+    <!-- HERO -->
+    <header class="hero">
+        <h1>Tio Hugo <span>Reciclaje</span></h1>
+        <p>Servicio certificado de reciclaje a domicilio con profesionales capacitados. Contribuimos con el medio ambiente desde tu puerta.</p>
+        <a href="#certificado" class="btn">Ver Certificación</a>
+    </header>
 
-<div class="container">
-    <div class="section">
-        <h2>¿Por qué elegirnos?</h2>
-        <ul>
-            <li>Recogida en tu puerta</li>
-            <li>Clasificación responsable</li>
-            <li>Compromiso con el medio ambiente</li>
-        </ul>
-    </div>
+    <!-- CERTIFICATION -->
+    <section id="certificado" class="certificate">
+        <div class="container">
+            <div class="cert-card">
+                <h3>Certificación Bureau Veritas</h3>
+                <div class="cert-info">
+                    BUREAU VERITAS CERTIFICATION CHILE S.A, RUT 99.526.160-K, representado por ERIK LUENGO LIQUITAY, Centro Evaluador acreditado por ChileValora, Certifica que Don <strong>JOSÉ HUGO SAGREDO ÁLVAREZ</strong>, RUT 12494103-2, se ha certificado en el perfil ocupacional <strong>“P-3830-9611-001-V01”, “RECICLADOR(A) DE BASE”</strong>.
+                </div>
+                <div class="cert-code">N°BUVC-3960</div>
+            </div>
+        </div>
+    </section>
 
-    <div class="section">
-        <a href="#" class="btn">Solicitar cotización</a>
-    </div>
-</div>
+    <!-- COMPETENCES -->
+    <section class="competences">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestras Competencias</h2>
+                <p>El perfil certificados cuenta con las siguientes unidades de competencia laboral:</p>
+            </div>
 
-<footer>
-    <p>&copy; 2025 Tio Hugo. Todos los derechos reservados.</p>
-</footer>
+            <div class="comp-card">
+                <h4>U-3830-9611-001-V01</h4>
+                <p>Planificar y ejecutar el proceso de recolección de materiales reciclables, de acuerdo a procedimientos de trabajo, objetivos de venta y medidas de seguridad.</p>
+            </div>
+
+            <div class="comp-card">
+                <h4>U-3830-9611-002-V01</h4>
+                <p>Realizar el proceso de venta de materiales reciclables, de acuerdo a los objetivos de venta y requisitos del comprador.</p>
+            </div>
+
+            <div class="comp-card">
+                <h4>U-3830-9611-003-V01</h4>
+                <p>Realizar los procesos de clasificación y pre-tratamiento manual de los materiales reciclables, de acuerdo a los objetivos de venta, requisitos del comprador y normativa vigente.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM / PERSON -->
+    <section class="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestro Experto Certificado</h2>
+            </div>
+            <div class="ficha">
+                <h3>JOSÉ HUGO SAGREDO ÁLVAREZ</h3>
+                <p><span>RUT:</span> 12494103-2</p>
+                <p><span>Perfil:</span> RECICLADOR(A) DE BASE</p>
+                <p><span>Sector:</span> SERVICIOS / SERVICIOS DE RECICLAJE Y ELIMINACIÓN DE RESIDUOS</p>
+                <p><span>Celular:</span> 957862131</p>
+                <p><span>Email:</span> JOSE.HUGO.SAGREDO@GMAIL.COM</p>
+                <p><span>Código Cert.:</span> P-3830-9611-001-V01 Versión: 1</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <footer class="cta">
+        <div class="container">
+            <h2>¿Necesitas un servicio de reciclaje?</h2>
+            <p>Contáctanos para retirar materiales reciclables en tu domicilio. Servicio rápido y responsable.</p>
+            <a href="mailto:JOSE.HUGO.SAGREDO@GMAIL.COM" class="btn">Solicitar Cotización</a>
+        </div>
+    </footer>
+
+    <footer class="bottom">
+        <div class="container" style="text-align: center; padding: 20px; color: var(--text-light); font-size: 0.8rem;">
+            &copy; 2025 Tio Hugo. Todos los derechos reservados.
+        </div>
+    </footer>
 
 </body>
 </html>
