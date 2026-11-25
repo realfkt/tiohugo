@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tio Hugo - Reciclaje Certificado</title>
+    <title>Tio Hugo - Reciclaje a Domicilio</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-purple: #533afd;
-            --deep-navy: #061b31;
+            --primary-green: #2d5a27;
+            --dark-green: #1b3a1a;
+            --light-green: #d4e8d4;
             --white: #ffffff;
-            --light-gray: #f9f9f9;
-            --text-medium: #64748d;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --accent-teal: #0f766e;
         }
 
         * {
@@ -23,7 +25,7 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--white);
-            color: var(--deep-navy);
+            color: var(--text-dark);
             line-height: 1.6;
         }
 
@@ -41,62 +43,101 @@
             height: auto;
         }
 
-        /* --- HERO WITH SLIDER --- */
-        .hero {
+        /* --- ANIMACIONES CSS --- */
+        .animate-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-in.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Entrance */
+        .hero-title {
+            transition: transform 0.5s ease-out, color 0.5s ease-out;
+        }
+
+        .hero-title.scrolled {
+            transform: translateY(-30px);
+        }
+
+        /* Button Hover */
+        .btn {
             position: relative;
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
             overflow: hidden;
-            background: var(--white);
+            transition: color 0.3s, background 0.3s;
         }
 
-        .slider {
-            position: relative;
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
             width: 100%;
-            max-width: 1200px;
-            padding: 2rem;
+            height: 100%;
+            background: var(--accent-teal);
+            transition: left 0.3s ease-out;
         }
 
-        .slide {
-            display: none;
+        .btn:hover::after {
+            left: 0;
+        }
+
+        .btn:hover {
+            color: var(--white);
+        }
+
+        /* Section Stagger */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--white) 100%);
+            padding: 120px 20px;
             text-align: center;
+            position: relative;
         }
 
-        .slide.active {
-            display: block;
-        }
-
-        /* Slide 1: Main Message */
-        .slide-1 h1 {
+        .hero h1 {
             font-weight: 300;
-            font-size: 48px;
-            line-height: 1.15;
-            letter-spacing: -0.96px;
-            color: var(--deep-navy);
-            margin-bottom: 24px;
+            font-size: 3.5rem;
+            line-height: 1.1;
+            color: var(--dark-green);
+            margin-bottom: 20px;
+            opacity: 0;
         }
 
-        .slide-1 h1 span {
-            color: var(--primary-purple);
+        .hero h1 span {
+            color: var(--primary-green);
         }
 
-        .slide-1 p {
-            font-size: 18px;
-            color: var(--text-medium);
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
             margin-bottom: 40px;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            opacity: 0;
         }
 
-        .slide-1 .btn {
-            background: var(--primary-purple);
+        .hero .btn {
+            background: var(--primary-green);
             color: var(--white);
             padding: 12px 30px;
-            border-radius: 4px;
+            border-radius: 0;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -104,136 +145,11 @@
             display: inline-block;
         }
 
-        .slide-1 .btn:hover {
-            background: #4434d4;
+        .hero .btn:hover {
+            background: var(--dark-green);
         }
 
-        /* Slide 2: How it Works */
-        .slide-2 .how-it-works {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .slide-2 h2 {
-            font-weight: 300;
-            font-size: 32px;
-            line-height: 1.1;
-            letter-spacing: -0.64px;
-            color: var(--deep-navy);
-            margin-bottom: 24px;
-            text-align: center;
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .step {
-            padding: 2rem;
-            background: var(--light-gray);
-            border-radius: 4px;
-            transition: transform 0.3s;
-        }
-
-        .step:hover {
-            transform: translateY(-4px);
-        }
-
-        .step-icon {
-            width: 48px;
-            height: 48px;
-            margin: 0 auto 1rem;
-            background: var(--primary-purple);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 20px;
-        }
-
-        .step h3 {
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        .step p {
-            font-size: 14px;
-            color: var(--text-medium);
-        }
-
-        /* Slide 3: Certification */
-        .slide-3 .cert-badge {
-            background: var(--primary-purple);
-            color: var(--white);
-            padding: 1rem 2rem;
-            border-radius: 4px;
-            font-weight: 600;
-            margin: 2rem auto;
-            display: inline-block;
-        }
-
-        .slide-3 p {
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 15px;
-            color: var(--deep-navy);
-        }
-
-        /* Navigation Buttons */
-        .prev, .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.8);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
-            transition: background 0.3s;
-        }
-
-        .prev:hover, .next:hover {
-            background: var(--light-gray);
-        }
-
-        .prev {
-            left: 20px;
-        }
-
-        .next {
-            right: 20px;
-        }
-
-        /* Dots Navigation */
-        .dots {
-            position: absolute;
-            bottom: 30px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            background: rgba(255,255,255,0.5);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .dot.active {
-            background: var(--primary-purple);
-        }
-
-        /* --- SECTIONS STYLE --- */
+        /* --- SECTIONS --- */
         section {
             padding: 60px 20px;
         }
@@ -246,76 +162,82 @@
         .section-title h2 {
             font-weight: 300;
             font-size: 2.5rem;
-            color: var(--deep-navy);
+            color: var(--dark-green);
             margin-bottom: 10px;
         }
 
         .section-title p {
-            color: var(--text-medium);
+            color: var(--text-light);
             max-width: 600px;
             margin: 0 auto;
         }
 
-        /* Certificate Section */
+        /* Certificacion */
         .certificate {
-            background: var(--light-gray);
+            background: var(--light-green);
         }
 
         .cert-card {
             background: var(--white);
-            border-radius: 4px;
+            border-radius: 8px;
             padding: 30px;
-            box-shadow: rgba(50,50,93,0.25) 0px 30px 45px -30px, rgba(0,0,0,0.1) 0px 18px 36px -18px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             margin: 0 auto;
             max-width: 800px;
         }
 
         .cert-card h3 {
-            color: var(--primary-purple);
+            color: var(--primary-green);
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 2px solid var(--light-gray);
+            border-bottom: 2px solid var(--light-green);
         }
 
         .cert-info {
             font-size: 0.9rem;
-            color: var(--deep-navy);
+            color: var(--text-dark);
             margin-bottom: 20px;
         }
 
         .cert-code {
-            color: var(--primary-purple);
+            color: var(--primary-green);
             font-weight: 700;
             font-size: 1.2rem;
             display: block;
             margin-top: 10px;
         }
 
-        /* Competences Section */
+        /* Competencias */
         .comp-card {
             margin-bottom: 30px;
             padding: 20px;
             background: var(--white);
-            border-left: 4px solid var(--primary-purple);
+            border-left: 4px solid var(--primary-green);
+            opacity: 0;
+            transition: opacity 0.4s ease-out;
+        }
+
+        .comp-card.visible {
+            opacity: 1;
         }
 
         .comp-card h4 {
-            color: var(--primary-purple);
+            color: var(--primary-green);
             margin-bottom: 10px;
             font-size: 1.1rem;
         }
 
         .comp-card p {
-            color: var(--text-medium);
+            color: var(--text-light);
             font-size: 0.9rem;
         }
 
-        /* Team Section */
+        /* Equipo */
         .team .ficha {
-            background: var(--deep-navy);
+            background: var(--primary-green);
             color: var(--white);
             padding: 30px;
-            border-radius: 4px;
+            border-radius: 8px;
             max-width: 600px;
             margin: 0 auto 40px;
         }
@@ -334,12 +256,12 @@
         }
 
         .ficha span {
-            color: var(--primary-purple);
+            color: var(--light-green);
         }
 
-        /* CTA Section */
+        /* CTA */
         .cta {
-            background: var(--deep-navy);
+            background: var(--dark-green);
             color: var(--white);
             text-align: center;
             padding: 80px 20px;
@@ -357,10 +279,10 @@
         }
 
         .cta .btn {
-            background: var(--primary-purple);
-            color: var(--deep-navy);
+            background: var(--light-green);
+            color: var(--dark-green);
             padding: 15px 50px;
-            border-radius: 4px;
+            border-radius: 0;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -369,97 +291,37 @@
         }
 
         .cta .btn:hover {
-            background: #4434d4;
+            background: var(--white);
+            color: var(--dark-green);
         }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .slide-1 h1 { font-size: 32px; letter-spacing: -0.48px; }
-            .slide-1 p { font-size: 16px; }
-            .slide-1 .btn { padding: 10px 20px; }
+            .hero h1 { font-size: 2.5rem; }
             .section-title h2 { font-size: 2rem; }
-            .steps { grid-template-columns: 1fr; }
+            .fade-in-up { opacity: 1; transform: translateY(0); } /* Reset for mobile if needed */
         }
-    
-    /* Slider Progress Bar */
-    .slider-progress-bar {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0%;
-        height: 3px;
-        background: var(--primary-purple);
-        transition: width 6s linear;
-        z-index: 5;
-    }
-</style>
+    </style>
 </head>
 <body>
 
-    <!-- HERO SLIDER -->
-    <section class="hero">
-        <div class="slider">
-        <div class="slider-progress-bar"></div>
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <h1>Tio Hugo <span>Reciclaje</span></h1>
+        <p>Servicio certificado de reciclaje a domicilio. Contribuimos con el medio ambiente desde tu puerta.</p>
+        <a href="#certificado" class="btn">Solicitar cotización</a>
+    </header>
 
-            
-            <!-- Slide 1: Main Message -->
-            <div class="slide active slide-1">
-                <h1>Tio Hugo <span>Reciclaje</span></h1>
-                <p>Servicio certificado de reciclaje a domicilio. Tú nos dices qué reciclar, nosotros nos encargamos del resto.</p>
-                <a href="#certificado" class="btn">Solicitar cotización</a>
-            </div>
-
-            <!-- Slide 2: How it Works -->
-            <div class="slide slide-2">
-                <div class="how-it-works">
-                    <h2>¿Cómo funciona?</h2>
-                    <div class="steps">
-                        <div class="step">
-                            <div class="step-icon">📱</div>
-                            <h3>Agenda tu hora</h3>
-                            <p>Seleccionas el día y hora por WhatsApp o formulario.</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-icon">🚚</div>
-                            <h3>Recogida</h3>
-                            <p>Nuestro equipo recoge los materiales en tu domicilio.</p>
-                        </div>
-                        <div class="step">
-                            <div class="step-icon">♻️</div>
-                            <h3>Transformación</h3>
-                            <p>Clasificamos y procesamos los residuos de forma responsable.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 3: Certification -->
-            <div class="slide slide-3">
-                <div class="cert-badge">N° BUVC-3960</div>
-                <p>BUREAU VERITAS CERTIFICATION CHILE S.A certifica que José Hugo Sagredo Álavarez, RUT 12494103-2, se ha certificado en el perfil ocupacional "RECICLADOR(A) DE BASE".</p>
-            </div>
-        </div>
-
-        <!-- Navigation Arrows -->
-        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
-        <button class="next" onclick="changeSlide(1)">&#10095;</button>
-
-        <!-- Dots Navigation -->
-        <div class="dots">
-            <span class="dot active" onclick="currentSlide(1)"></span>
-            <span class="dot" onclick="currentSlide(2)"></span>
-            <span class="dot" onclick="currentSlide(3)"></span>
-        </div>
-    </section>
-
-    <!-- CERTIFICATION DETAIL -->
+    <!-- CERTIFICATION -->
     <section id="certificado" class="certificate">
-        <div class="cert-card">
-            <h3>Certificación Bureau Veritas</h3>
-            <div class="cert-info">
-                BUREAU VERITAS CERTIFICATION CHILE S.A, RUT 99.526.160-K, representado por ERIK LUENGO LIQUITAY, Centro Evaluador acreditado por ChileValora, Certifica que Don <strong>JOSÉ HUGO SAGREDO ÁLVAREZ</strong>, RUT 12494103-2, se ha certificado en el perfil ocupacional <strong>“P-3830-9611-001-V01”, “RECICLADOR(A) DE BASE”</strong>.
+        <div class="container">
+            <div class="cert-card">
+                <h3>Certificación Bureau Veritas</h3>
+                <div class="cert-info">
+                    BUREAU VERITAS CERTIFICATION CHILE S.A, RUT 99.526.160-K, representado por ERIK LUENGO LIQUITAY, Centro Evaluador acreditado por ChileValora, Certifica que Don <strong>JOSÉ HUGO SAGREDO ÁLVAREZ</strong>, RUT 12494103-2, se ha certificado en el perfil ocupacional <strong>“P-3830-9611-001-V01”, “RECICLADOR(A) DE BASE”</strong>.
+                </div>
+                <div class="cert-code">N°BUVC-3960</div>
             </div>
-            <div class="cert-code">N°BUVC-3960</div>
         </div>
     </section>
 
@@ -471,17 +333,17 @@
                 <p>El perfil certificado cuenta con las siguientes unidades de competencia laboral:</p>
             </div>
 
-            <div class="comp-card">
+            <div class="comp-card fade-in-up" style="transition-delay: 0.1s;">
                 <h4>U-3830-9611-001-V01</h4>
                 <p>Planificar y ejecutar el proceso de recolección de materiales reciclables, de acuerdo a procedimientos de trabajo, objetivos de venta y medidas de seguridad.</p>
             </div>
 
-            <div class="comp-card">
+            <div class="comp-card fade-in-up" style="transition-delay: 0.2s;">
                 <h4>U-3830-9611-002-V01</h4>
                 <p>Realizar el proceso de venta de materiales reciclables, de acuerdo a los objetivos de venta y requisitos del comprador.</p>
             </div>
 
-            <div class="comp-card">
+            <div class="comp-card fade-in-up" style="transition-delay: 0.3s;">
                 <h4>U-3830-9611-003-V01</h4>
                 <p>Realizar los procesos de clasificación y pre-tratamiento manual de los materiales reciclables, de acuerdo a los objetivos de venta, requisitos del comprador y normativa vigente.</p>
             </div>
@@ -516,42 +378,33 @@
     </section>
 
     <footer class="bottom">
-        <div class="container" style="text-align: center; padding: 20px; color: var(--text-medium); font-size: 0.8rem;">
+        <div class="container" style="text-align: center; padding: 20px; color: var(--text-light); font-size: 0.8rem;">
             &copy; 2025 Tio Hugo. Todos los derechos reservados.
         </div>
     </footer>
 
     <script>
-        let currentSlide = 1;
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
+        // Simple Scroll Reveal Animation
+        const observeOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
 
-        function changeSlide(direction) {
-            slides[currentSlide - 1].classList.remove('active');
-            currentSlide += direction;
-            
-            if (currentSlide > totalSlides) currentSlide = 1;
-            if (currentSlide < 1) currentSlide = totalSlides;
-
-            slides[currentSlide - 1].classList.add('active');
-            updateDots();
-        }
-
-        function currentSlide(n) {
-            slides[currentSlide - 1].classList.remove('active');
-            currentSlide = n;
-            slides[currentSlide - 1].classList.add('active');
-            updateDots();
-        }
-
-        function updateDots() {
-            document.querySelectorAll('.dot').forEach((dot, index) => {
-                dot.classList.toggle('active', index + 1 === currentSlide);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
-        }
+        }, observeOptions);
 
-        // Auto-play every 6 seconds
-        setInterval(() => changeSlide(1), 6000);
+        // Observe all elements with .fade-in-up class
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Optional: Navbar scroll effect (if there was a navbar, but there isn't, so skipping)
+        // Keeping JS minimal as requested "js solo razon atoma copnetxto"
     </script>
 
 </body>
