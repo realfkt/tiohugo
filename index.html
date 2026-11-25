@@ -380,13 +380,27 @@
             .section-title h2 { font-size: 2rem; }
             .steps { grid-template-columns: 1fr; }
         }
-    </style>
+    
+    /* Slider Progress Bar */
+    .slider-progress-bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background: var(--primary-purple);
+        transition: width 6s linear;
+        z-index: 5;
+    }
+</style>
 </head>
 <body>
 
     <!-- HERO SLIDER -->
     <section class="hero">
         <div class="slider">
+        <div class="slider-progress-bar"></div>
+
             
             <!-- Slide 1: Main Message -->
             <div class="slide active slide-1">
