@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tio Hugo - Reciclaje Certificado</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-green: #2d5a27;
-            --dark-green: #1b3a1a;
-            --light-green: #d4e8d4;
-            --text-dark: #2c3e50;
-            --text-light: #7f8c8d;
+            --primary-purple: #533afd;
+            --deep-navy: #061b31;
             --white: #ffffff;
+            --light-gray: #f9f9f9;
+            --text-medium: #64748d;
         }
 
         * {
@@ -24,7 +23,7 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--white);
-            color: var(--text-dark);
+            color: var(--deep-navy);
             line-height: 1.6;
         }
 
@@ -42,50 +41,196 @@
             height: auto;
         }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO WITH SLIDER --- */
         .hero {
-            background: linear-gradient(rgba(45, 90, 39, 0.8), rgba(45, 90, 39, 0.8)), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23d4e8d4' opacity='1' d='M0,270L31.1,246.7C62.2,223.3,124.4,186.7,186.7,165.3C248.9,144,311,117.3,373.3,112C435.6,106.7,497.8,120,558.9,125.3C620.1,130.7,681.5,117.3,742.7,106.7C803.9,96,865.1,75,925.6,69.3C985.8,63.3,1045.5,53.3,1104.4,53.3C1164.4,53.3,1223.7,64,1266.7,74.7C1308.9,85.3,1365.8,106.7,1416,122.7L1440,133.3L1440,320L1320,320L1280,352L1280,320L1200,320L1152,320L1120,320L1088,320L1056,320L1024,320L992,320L960,320L928,320L896,320L864,320L832,320L800,320L768,320L736,320L704,320L672,320L640,320L608,320L576,320L544,320L512,320L480,320L448,320L416,320L384,320L352,320L320,320L288,320L256,320L224,320L192,320L160,320L128,320L96,320L64,320L32,320L0,320Z'/%3E%3C/svg%3E");
-            background-size: cover;
-            background-position: center;
-            color: var(--white);
-            padding: 80px 20px;
+            position: relative;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background: var(--white);
+        }
+
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            padding: 2rem;
+        }
+
+        .slide {
+            display: none;
             text-align: center;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.2;
+        .slide.active {
+            display: block;
         }
 
-        .hero h1 span {
-            color: var(--light-green);
+        /* Slide 1: Main Message */
+        .slide-1 h1 {
+            font-weight: 300;
+            font-size: 48px;
+            line-height: 1.15;
+            letter-spacing: -0.96px;
+            color: var(--deep-navy);
+            margin-bottom: 24px;
         }
 
-        .hero p {
-            font-size: 1.2rem;
+        .slide-1 h1 span {
+            color: var(--primary-purple);
+        }
+
+        .slide-1 p {
+            font-size: 18px;
+            color: var(--text-medium);
             margin-bottom: 40px;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .hero .btn {
-            background-color: var(--light-green);
-            color var(--primary-green);
+        .slide-1 .btn {
+            background: var(--primary-purple);
+            color: var(--white);
             padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 600;
+            border-radius: 4px;
+            font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: 0.3s;
             display: inline-block;
         }
 
-        .hero .btn:hover {
-            background-color: var(--primary-green);
+        .slide-1 .btn:hover {
+            background: #4434d4;
+        }
+
+        /* Slide 2: How it Works */
+        .slide-2 .how-it-works {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .slide-2 h2 {
+            font-weight: 300;
+            font-size: 32px;
+            line-height: 1.1;
+            letter-spacing: -0.64px;
+            color: var(--deep-navy);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            padding: 2rem;
+            background: var(--light-gray);
+            border-radius: 4px;
+            transition: transform 0.3s;
+        }
+
+        .step:hover {
+            transform: translateY(-4px);
+        }
+
+        .step-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 1rem;
+            background: var(--primary-purple);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--white);
+            font-size: 20px;
+        }
+
+        .step h3 {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            font-size: 14px;
+            color: var(--text-medium);
+        }
+
+        /* Slide 3: Certification */
+        .slide-3 .cert-badge {
+            background: var(--primary-purple);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            margin: 2rem auto;
+            display: inline-block;
+        }
+
+        .slide-3 p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 15px;
+            color: var(--deep-navy);
+        }
+
+        /* Navigation Buttons */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.8);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.3s;
+        }
+
+        .prev:hover, .next:hover {
+            background: var(--light-gray);
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        /* Dots Navigation */
+        .dots {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: var(--primary-purple);
         }
 
         /* --- SECTIONS STYLE --- */
@@ -99,97 +244,85 @@
         }
 
         .section-title h2 {
+            font-weight: 300;
             font-size: 2.5rem;
-            color: var(--primary-green);
+            color: var(--deep-navy);
             margin-bottom: 10px;
         }
 
         .section-title p {
-            color: var(--text-light);
+            color: var(--text-medium);
             max-width: 600px;
             margin: 0 auto;
         }
 
-        /* --- CERTIFICATION SECTION --- */
+        /* Certificate Section */
         .certificate {
-            background-color: var(--light-green);
-        }
-
-        .certificate .container {
-            max-width: 800px;
-            margin: 0 auto;
+            background: var(--light-gray);
         }
 
         .cert-card {
             background: var(--white);
-            border-radius: 10px;
+            border-radius: 4px;
             padding: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-top: -50px; /* Overlap hero */
-            position: relative;
-            z-index: 1;
+            box-shadow: rgba(50,50,93,0.25) 0px 30px 45px -30px, rgba(0,0,0,0.1) 0px 18px 36px -18px;
+            margin: 0 auto;
+            max-width: 800px;
         }
 
         .cert-card h3 {
-            color: var(--primary-green);
+            color: var(--primary-purple);
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 2px solid var(--light-green);
+            border-bottom: 2px solid var(--light-gray);
         }
 
         .cert-info {
             font-size: 0.9rem;
-            color: var(--text-dark);
+            color: var(--deep-navy);
             margin-bottom: 20px;
         }
 
         .cert-code {
-            color: var(--primary-green);
+            color: var(--primary-purple);
             font-weight: 700;
             font-size: 1.2rem;
-            margin-top: 10px;
             display: block;
+            margin-top: 10px;
         }
 
-        /* --- COMPETENCES SECTION --- */
-        .competences {
-            background-color: var(--white);
-        }
-
+        /* Competences Section */
         .comp-card {
             margin-bottom: 30px;
             padding: 20px;
-            border-left: 4px solid var(--primary-green);
+            background: var(--white);
+            border-left: 4px solid var(--primary-purple);
         }
 
         .comp-card h4 {
-            color: var(--primary-green);
+            color: var(--primary-purple);
             margin-bottom: 10px;
             font-size: 1.1rem;
         }
 
         .comp-card p {
-            color: var(--text-light);
+            color: var(--text-medium);
             font-size: 0.9rem;
         }
 
-        /* --- TEAM/SECTION --- */
-        .team {
-            text-align: center;
-        }
-
+        /* Team Section */
         .team .ficha {
-            background: var(--primary-green);
+            background: var(--deep-navy);
             color: var(--white);
             padding: 30px;
-            border-radius: 10px;
+            border-radius: 4px;
             max-width: 600px;
             margin: 0 auto 40px;
         }
 
         .team h3 {
             margin-bottom: 20px;
-            color: var(--text-dark);
+            color: var(--white);
         }
 
         .ficha p {
@@ -201,18 +334,19 @@
         }
 
         .ficha span {
-            color: var(--light-green);
+            color: var(--primary-purple);
         }
 
-        /* --- CTA --- */
+        /* CTA Section */
         .cta {
-            background-color: var(--primary-green);
+            background: var(--deep-navy);
             color: var(--white);
             text-align: center;
             padding: 80px 20px;
         }
 
         .cta h2 {
+            font-weight: 300;
             font-size: 2.5rem;
             margin-bottom: 20px;
         }
@@ -223,10 +357,10 @@
         }
 
         .cta .btn {
-            background-color: var(--light-green);
-            color: var(--primary-green);
+            background: var(--primary-purple);
+            color: var(--deep-navy);
             padding: 15px 50px;
-            border-radius: 50px;
+            border-radius: 4px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -235,36 +369,83 @@
         }
 
         .cta .btn:hover {
-            background-color: var(--white);
-            color: var(--primary-green);
+            background: #4434d4;
         }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
+            .slide-1 h1 { font-size: 32px; letter-spacing: -0.48px; }
+            .slide-1 p { font-size: 16px; }
+            .slide-1 .btn { padding: 10px 20px; }
             .section-title h2 { font-size: 2rem; }
+            .steps { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HERO -->
-    <header class="hero">
-        <h1>Tio Hugo <span>Reciclaje</span></h1>
-        <p>Servicio certificado de reciclaje a domicilio con profesionales capacitados. Contribuimos con el medio ambiente desde tu puerta.</p>
-        <a href="#certificado" class="btn">Ver Certificación</a>
-    </header>
-
-    <!-- CERTIFICATION -->
-    <section id="certificado" class="certificate">
-        <div class="container">
-            <div class="cert-card">
-                <h3>Certificación Bureau Veritas</h3>
-                <div class="cert-info">
-                    BUREAU VERITAS CERTIFICATION CHILE S.A, RUT 99.526.160-K, representado por ERIK LUENGO LIQUITAY, Centro Evaluador acreditado por ChileValora, Certifica que Don <strong>JOSÉ HUGO SAGREDO ÁLVAREZ</strong>, RUT 12494103-2, se ha certificado en el perfil ocupacional <strong>“P-3830-9611-001-V01”, “RECICLADOR(A) DE BASE”</strong>.
-                </div>
-                <div class="cert-code">N°BUVC-3960</div>
+    <!-- HERO SLIDER -->
+    <section class="hero">
+        <div class="slider">
+            
+            <!-- Slide 1: Main Message -->
+            <div class="slide active slide-1">
+                <h1>Tio Hugo <span>Reciclaje</span></h1>
+                <p>Servicio certificado de reciclaje a domicilio. Tú nos dices qué reciclar, nosotros nos encargamos del resto.</p>
+                <a href="#certificado" class="btn">Solicitar cotización</a>
             </div>
+
+            <!-- Slide 2: How it Works -->
+            <div class="slide slide-2">
+                <div class="how-it-works">
+                    <h2>¿Cómo funciona?</h2>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-icon">📱</div>
+                            <h3>Agenda tu hora</h3>
+                            <p>Seleccionas el día y hora por WhatsApp o formulario.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon">🚚</div>
+                            <h3>Recogida</h3>
+                            <p>Nuestro equipo recoge los materiales en tu domicilio.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon">♻️</div>
+                            <h3>Transformación</h3>
+                            <p>Clasificamos y procesamos los residuos de forma responsable.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Certification -->
+            <div class="slide slide-3">
+                <div class="cert-badge">N° BUVC-3960</div>
+                <p>BUREAU VERITAS CERTIFICATION CHILE S.A certifica que José Hugo Sagredo Álavarez, RUT 12494103-2, se ha certificado en el perfil ocupacional "RECICLADOR(A) DE BASE".</p>
+            </div>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next" onclick="changeSlide(1)">&#10095;</button>
+
+        <!-- Dots Navigation -->
+        <div class="dots">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </section>
+
+    <!-- CERTIFICATION DETAIL -->
+    <section id="certificado" class="certificate">
+        <div class="cert-card">
+            <h3>Certificación Bureau Veritas</h3>
+            <div class="cert-info">
+                BUREAU VERITAS CERTIFICATION CHILE S.A, RUT 99.526.160-K, representado por ERIK LUENGO LIQUITAY, Centro Evaluador acreditado por ChileValora, Certifica que Don <strong>JOSÉ HUGO SAGREDO ÁLVAREZ</strong>, RUT 12494103-2, se ha certificado en el perfil ocupacional <strong>“P-3830-9611-001-V01”, “RECICLADOR(A) DE BASE”</strong>.
+            </div>
+            <div class="cert-code">N°BUVC-3960</div>
         </div>
     </section>
 
@@ -273,7 +454,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>Nuestras Competencias</h2>
-                <p>El perfil certificados cuenta con las siguientes unidades de competencia laboral:</p>
+                <p>El perfil certificado cuenta con las siguientes unidades de competencia laboral:</p>
             </div>
 
             <div class="comp-card">
@@ -312,19 +493,52 @@
     </section>
 
     <!-- CTA -->
-    <footer class="cta">
+    <section class="cta">
         <div class="container">
             <h2>¿Necesitas un servicio de reciclaje?</h2>
             <p>Contáctanos para retirar materiales reciclables en tu domicilio. Servicio rápido y responsable.</p>
             <a href="mailto:JOSE.HUGO.SAGREDO@GMAIL.COM" class="btn">Solicitar Cotización</a>
         </div>
-    </footer>
+    </section>
 
     <footer class="bottom">
-        <div class="container" style="text-align: center; padding: 20px; color: var(--text-light); font-size: 0.8rem;">
+        <div class="container" style="text-align: center; padding: 20px; color: var(--text-medium); font-size: 0.8rem;">
             &copy; 2025 Tio Hugo. Todos los derechos reservados.
         </div>
     </footer>
+
+    <script>
+        let currentSlide = 1;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function changeSlide(direction) {
+            slides[currentSlide - 1].classList.remove('active');
+            currentSlide += direction;
+            
+            if (currentSlide > totalSlides) currentSlide = 1;
+            if (currentSlide < 1) currentSlide = totalSlides;
+
+            slides[currentSlide - 1].classList.add('active');
+            updateDots();
+        }
+
+        function currentSlide(n) {
+            slides[currentSlide - 1].classList.remove('active');
+            currentSlide = n;
+            slides[currentSlide - 1].classList.add('active');
+            updateDots();
+        }
+
+        function updateDots() {
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index + 1 === currentSlide);
+            });
+        }
+
+        // Auto-play every 6 seconds
+        setInterval(() => changeSlide(1), 6000);
+    </script>
 
 </body>
 </html>
