@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tio Hugo - Reciclaje a Domicilio</title>
+    <meta name="description" content="Tio Hugo - Servicio profesional de reciclaje a domicilio. Certificado por Bureau Veritas. Recogida y gestión de residuos responsable.">
+    <title>Tio Hugo - Reciclaje Certificado</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -12,7 +13,7 @@
             --light-green: #d4e8d4;
             --white: #ffffff;
             --text-dark: #2c3e50;
-            --text-light: #7f8c8d;
+            --text-light: #4a5568;
             --accent-teal: #0f766e;
         }
 
@@ -53,15 +54,6 @@
         .animate-in.active {
             opacity: 1;
             transform: translateY(0);
-        }
-
-        /* Hero Entrance */
-        .hero-title {
-            transition: transform 0.5s ease-out, color 0.5s ease-out;
-        }
-
-        .hero-title.scrolled {
-            transform: translateY(-30px);
         }
 
         /* Button Hover */
@@ -299,7 +291,6 @@
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .section-title h2 { font-size: 2rem; }
-            .fade-in-up { opacity: 1; transform: translateY(0); } /* Reset for mobile if needed */
         }
     </style>
 </head>
@@ -402,9 +393,6 @@
         document.querySelectorAll('.fade-in-up').forEach(el => {
             observer.observe(el);
         });
-
-        // Optional: Navbar scroll effect (if there was a navbar, but there isn't, so skipping)
-        // Keeping JS minimal as requested "js solo razon atoma copnetxto"
     </script>
 
 </body>
